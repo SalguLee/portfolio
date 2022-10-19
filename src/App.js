@@ -4,7 +4,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      안녕하세요. 여기가 dev
+      이제부터 병합 테스트를 해볼껍니다.. 
     </div>
   );
 }

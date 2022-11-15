@@ -44,13 +44,13 @@ function App() {
     // userSelect = choice[userChoice] 변수 선언하듯 하면 안됨
 
     // 4-1 컴터가 아이탬을 랜덤하게 뿌려
-    let cpmputerChoice = ramdomChoice() // ramdomChoice()의 실행값을 cpmputerChoice 변수에 일단 넣어봄
+    let computerChoice = ramdomChoice() // ramdomChoice()의 실행값을 cpmputerChoice 변수에 일단 넣어봄
 
     // 4-2-4 레알 최종... 이제 컴터값을 동적으로 변경시켜본다~
-    setComputerSelet(cpmputerChoice);
+    setComputerSelet(computerChoice);
 
     // 5-1 값을 판단하는 함수로 결과값을 전달해보자 : judgement(유저 선택값, 컴터 선택값)
-    setResult(judgement(choice[userChoice], cpmputerChoice));
+    setResult(judgement(choice[userChoice], computerChoice));
   }
 
   // 4-2 랜덤으로 값을 만들어보자고 : math.random
@@ -85,7 +85,7 @@ function App() {
     if(user.name == computer.name){
       return "tie"
     } else if(user.name == "Rock")
-      return computer.name == "Scissors" ? "win" : "lose"
+      return computer.name == "Scissors" ? "win" : "lose" // 삼항연산자로 변경
     // {
     //   if(computer == "scissors"){
     //     return "win"

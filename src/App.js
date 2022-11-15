@@ -1,4 +1,5 @@
-//import logo from './logo.svg';
+// // 3-3. 버튼을 클릭하면 값이 보임 - 내가 뭘 선택했는지 보여위해 ui가 바뀌게 하고싶다면? 리엑트의 hook인 userState를 사용한다!!!
+import {useState} from 'react';
 import './App.css';
 import Box from './component/Box'
 
@@ -99,10 +100,24 @@ function App() {
   }
 
   return (
-    <div className="App">
-      이제부터 병합 테스트를 해볼껍니다.. 
+    <div>
+      <div className="main">
+        {/* 3-4-1 박스에 userSelect 값을 넘겨줌 */}
+        <Box title="you" item={userSelect} result={result}/> {/* 5. 결과값도 연결해준다 */}
+        <Box title="computer" item={computerSelet} result={result}/> {/* 5. 결과값도 연결해준다 */}
+      </div>
+      <div className="resultBox">
+        {/* 
+          onClick={함수명()} => 리엑트는 이런 함수를 onClick과 상관없이 바로 랜더링 해버린다. 그래서 콜백함수 형식으로 작성해야 onClick이 제대로 작동한다요
+           : {() => 함수명()}        
+        */}
+        <button onClick={() => play("scissors")}>가위</button> {/* 선택한 값이 어떤건지 알려주는 매개변수를 넣을꺼임 */}
+        <button onClick={() => play("rock")}>바위</button>
+        <button onClick={() => play("paper")}>보</button>
+        <h2>You : {result}</h2>
+      </div>
     </div>
-  );
+  )
 }
 
 export default App;

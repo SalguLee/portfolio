@@ -115,6 +115,7 @@ function App() {
         <button onClick={() => play("rock")}>바위</button>
         <button onClick={() => play("paper")}>보</button>
         <h2>You : {result}</h2>
+        <p>dev</p>
       </div>
     </div>
   )

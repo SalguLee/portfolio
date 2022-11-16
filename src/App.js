@@ -41,7 +41,8 @@ function App() {
   const play = (userChoice) => {
     console.log('userChoice', userChoice);
     setUserSelect(choice[userChoice]); // 내가 선택한 아이탬 이미지로 동적 변경
-    setComputerSelect(randomChoice); // 컴터 랜덤
+    let computerChoice = randomChoice(); // 함수를 바로 세터함수에 넣을수 없기때문에 한번 더 선언해서 사용
+    setComputerSelect(computerChoice); // 컴터 랜덤
   }
 
   // 4. 컴터의 랜덤 아이템
@@ -50,8 +51,16 @@ function App() {
     // Math.floor() : 소숫점 날려주기
     // Object.keys : 키값 뽑아서 배열로 만들어주기
     // 각 값을 변수에 담아서 사용
-    let itemArray = Object.keys(choice);
-    console.log('itemArray', itemArray);
+    let itemArray = Object.keys(choice); // 객체 번호를 랜덤하게 뿌리기 위해 배열로 뽑음
+    // 그 배열을 랜덤으로 뿌리기위해 Math.floor(Math.random()) 사용
+    // Math.random()을 그냥 사용하면 소숫점으로 나오기 때문에 객체만큽 곱한 후 소숫점을 떼면 원하는 배열이 나옴
+    let randomItem = Math.floor(Math.random() * itemArray.length);
+    console.log('item Array', itemArray);
+    console.log('randomItem', randomItem);
+    // 이제 최종적으로다가 숫자를 아이템으로 반환
+    let final = itemArray[randomItem];
+    console.log('final', final);
+    return choice[final];
   }
 
   return (
@@ -59,7 +68,7 @@ function App() {
       <div className="main">
         {/* 선언한 item을 Box.js에서 사용 */}
         <Box title="you" item={userSelect}/>
-        <Box title="computer" item={random}/>
+        <Box title="computer" item={computerSelect} />
       </div>
       <div className="resultBox">
         <button onClick={() => play("scissors")}>가위</button>

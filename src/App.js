@@ -36,13 +36,18 @@ function App() {
   // 3-1. 유저가 클릭할 값 할당 = 객채로 작성, 이때 useState 를 쓴다
   const [userSelect, setUserSelect] = useState(null); // user : 유저값이 바껴야되는 곳에 userSelect 이거를 함수로 선언해서 사용
   const [computerSelect, setComputerSelect] = useState(null); // computer
+  const [result, setResult] = useState(""); // 결과값
 
-  // 3. 버튼을 클릭하면 값이 보임
-  const play = (userChoice) => {
-    console.log('userChoice', userChoice);
-    setUserSelect(choice[userChoice]); // 내가 선택한 아이탬 이미지로 동적 변경
+  // 3. 버튼을 클릭하면 값이 보임 : 메인 함수
+  const play = (userChoice) => { // 클릭할 때 들어오는 인자값을 매개변수로 사용
+    console.log('userChoice', userChoice); // 그 매개변수를 보여줘보자
+    setUserSelect(choice[userChoice]); // 내가 선택한 아이탬(choice[userChoice]) 이미지로 동적 변경
     let computerChoice = randomChoice(); // 함수를 바로 세터함수에 넣을수 없기때문에 한번 더 선언해서 사용
-    setComputerSelect(computerChoice); // 컴터 랜덤
+    setComputerSelect(computerChoice); // 컴터선택한 값(computerChoice)을 랜덤으로 보여줌
+
+    // 5. 3,4 결과를 가지고 승패 결정할수 있는 함수를 만들어보자!!
+    setResult(judgment(choice[userChoice], computerChoice)); // judgment 함수에 매개변수로 사용할 수 있도록 choice[userChoice], computerChoice의 인자값을 설정 한 후에 결과값 uesState에 넣어서 호출
+    console.log()
   }
 
   // 4. 컴터의 랜덤 아이템
@@ -63,12 +68,36 @@ function App() {
     return choice[final];
   }
 
+  //결과값을 비교한 후에 비교값을 어딘가 뿌려줘야되는데 
+  const judgment = (user, computer) => { // 위에서 설정한 인자값을 매개변수로 받아서 사용, 근데 로그파일을 보면 배열로 받아와진다
+    console.log('user', user, 'computer', computer)
+    /*
+      승패를 결정하는 게임
+      {user}
+      scissors : scissors = tie
+      scissors : paper = win
+      scissors : rock = lose
+      rock : rock = tie
+      rock : scissors = win
+      rock : paper = lose
+      paper : paper = tie
+      paper : rock = win
+      paper : scissors = lose
+      */
+    if(user.name === computer.name){ // 그래서 배열의 이름을 비교할라믄 .name로 비교해야함
+      return "tie"
+    }
+    else if(user.name === "Scissors") return computer.name === "Paper" ? "Win" : "Lose";
+    else if(user.name === "Rock") return computer.name === "Scissors" ? "Win" : "Lose";
+    else if(user.name === "Paper") return computer.name === "Rock" ? "Win" : "Lose";
+  }
+
   return (
     <div>
       <div className="main">
         {/* 선언한 item을 Box.js에서 사용 */}
-        <Box title="you" item={userSelect}/>
-        <Box title="computer" item={computerSelect} />
+        <Box title="you" item={userSelect} result={result}/>
+        <Box title="computer" item={computerSelect} result={result}/>
       </div>
       <div className="resultBox">
         <button onClick={() => play("scissors")}>가위</button>

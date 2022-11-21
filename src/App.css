@@ -3,3 +3,7 @@
 .item-img{max-width:400px;width:100%;border:none;margin:0 auto;display:block}
 .box h2{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);}
 .resultBox{margin-top:50px;text-align:center}
+
+.Win{color:green;border-color:green}
+.Lose{color:red;border-color:red}
+.tie{color:#000;border-color:#000}

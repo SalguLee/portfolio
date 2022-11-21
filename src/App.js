@@ -47,7 +47,6 @@ function App() {
 
     // 5. 3,4 결과를 가지고 승패 결정할수 있는 함수를 만들어보자!!
     setResult(judgment(choice[userChoice], computerChoice)); // judgment 함수에 매개변수로 사용할 수 있도록 choice[userChoice], computerChoice의 인자값을 설정 한 후에 결과값 uesState에 넣어서 호출
-    console.log()
   }
 
   // 4. 컴터의 랜덤 아이템
